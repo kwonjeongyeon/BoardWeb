@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- applicationContext : 컨테이너가 구동되는 시점에 <bean> 등록된 클래스들을 객체 생성하는 즉시 로딩 
+		방식으로 동작 -->
+
+	<!-- 작성한 TV 예제를 스프링 기반으로 테스트하기 위해 스프링 설정 파일에 등록 -->
+	<!-- 클래스 하나당 하나의 <bean> 설정이 필요 / class 속성값 : 패키지 경로가 포함된 전체 클래스 경로 지정 -->
+	<bean id="tv" class="polymorphism.SamsungTV"
+		init-method="initMethod" destroy-method="destroyMethod"
+		lazy-init="true" scope="singleton"></bean>
+	<!-- 실행되는 TV를 LgTV로 변경하면, 클라이언트 소스를 수정하지 않고도 동작하는 TV 변경 가능 -->
+	<!-- <bean>객체를 위한 이름을 지정 : id / 정확한 패키지 경로와 클래스 이름 지정 : class(필수적) -->
+	<!-- name 속성은 id와 다르게 식별자 작성 규칙을 따르지 않는 문자열도 허용 , id 사용을 선호 -->
+
+	<!-- 서블릿은 init()메소드를 재정의(overriding)하여 멤버변수 초기화 -->
+	<!-- init-method 속성 -->
+	<!-- init-method : The name of the custom initialization method to invoke 
+		after setting bean properties. The method must have no arguments, but may 
+		throw any exception. This is an alternative to implementing Spring's InitializingBean 
+		interface or marking a method with the PostConstruct annotation. -->
+	<!-- 스프링 컨테이너는 <bean> 등록된 클래스 객체를 생성한 후에 init-method 속성으로 지정된 메서드를 호출함, 
+		이 메서드에서 멤버 변수에 대한 초기화 작업을 처리함 -->
+
+	<!-- destroy- Method : 스프링 컨테이너가 객체를 삭제하기 직전에 호출될 임의의 메소드 지정 -->
+
+	<!-- lazy-init : (true인 경우) 스프링 컨테이너는 해당 <bean>을 미리 생성하지 않고 클라이언트가 요청하는 
+		시점에 생성, 메모리 관리 효율적으로 가능 -->
+
+	<!-- 클래스로부터 객체를 생성하는 쪽에서 자동으로 싱글톤 객체로 생성 -->
+	<!-- scope 속성값은 기본이 싱글톤, 해당 bean이 스프링 컨테이너에 의해 단 하나만 생성되어 운용되도록 함 -->
+	<!-- prototype : 스프링 컨테이너는 해당 bean이 요청될 때마다 매번 새로운 객체를 생성하여 반환 -->
+
+
+
+
+
+	<!-- <import resource="context-datasource.xml"></import>       datasource 관련 설정 
+		<import resource="context-transaction.xml"></import>       transaction 관련 설정 -->
+	<!-- <import> 태그 : 스프링 기반의 애플리케이션은 단순한 <bean> 등록 외에도 트랜잭션 관리, 예외 처리, 다국어 
+		처리 등 복잡하고 다양한 설정이 필요 이런 모든 설정을 하나의 파일로 모두 처리할 수도 있지만 그렇게 하면 스프링 설정 파일이 너무 
+		길어지고 관리도 어려움 결국 기능별 여러 XML 파일로 나누어 설정하는 것이 더 효율적 -->
+	<!-- 기능별 여러 XML 파일로 나누어 설정하는 것이 효율적 -> 이렇게 분리하여 작성한 설정파일들을 하나로 통합할 떄 <import>사용 
+		여러 스프링 설정 파일을 포함함으로써 한 파일에 작성하는 것과 같은 효과 -->
+
+
+
+
+
+
+</beans>
