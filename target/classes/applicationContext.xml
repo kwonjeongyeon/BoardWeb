@@ -10,9 +10,21 @@
 		
 		<!-- 컴포넌트 스캔 : 스프링 설정 파일에 애플리케이션에서 사용할 객체들을 <bean> 등록하지 않고 자동으로 생성 -->
 		<!-- 스프링 컨테이너는 클래스 패스에 있는 클래스들을 스캔하여 @component가 설정된 클래스들을 자동으로 객체 생성 -->
-		<context:component-scan base-package="polymorphism"></context:component-scan>
+<!-- 		<context:component-scan base-package="polymorphism"></context:component-scan>
 		
-		<bean class="polymorphism.SonySpeaker"></bean>
+		<bean class="polymorphism.SonySpeaker"></bean> -->
+		
+		<context:component-scan base-package="com.myspring.biz"></context:component-scan>
+		
+		
+		<!-- <Setter 인젝션 설정 테스트 UserService 컴포넌트> -->
+		<!-- UserServiceImpl클래스와  UserDAO  클래스 각각 <bean> 등록-->
+		<!-- UserServiceImpl클래스에서 UserDAO 객체를 의존성 주입하기 위한 <property> 설정 추가 -->
+<!-- 		<bean id="userService" class="com.myspring.biz.user.impl.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"></property>
+		</bean>
+		
+		<bean id="userDAO" class="com.myspring.biz.user.impl.UserDAO"></bean> -->
 		
 		
 		
