@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	<!-- applicationContext : 컨테이너가 구동되는 시점에 <bean> 등록된 클래스들을 객체 생성하는 즉시 로딩 
 		방식으로 동작 -->
+		
+		<!-- 컴포넌트 스캔 : 스프링 설정 파일에 애플리케이션에서 사용할 객체들을 <bean> 등록하지 않고 자동으로 생성 -->
+		<!-- 스프링 컨테이너는 클래스 패스에 있는 클래스들을 스캔하여 @component가 설정된 클래스들을 자동으로 객체 생성 -->
+		<context:component-scan base-package="polymorphism"></context:component-scan>
+		
+		<bean class="polymorphism.SonySpeaker"></bean>
+		
+		
+		
+		
 
 	<!-- 작성한 TV 예제를 스프링 기반으로 테스트하기 위해 스프링 설정 파일에 등록 -->
 	<!-- 클래스 하나당 하나의 <bean> 설정이 필요 / class 속성값 : 패키지 경로가 포함된 전체 클래스 경로 지정 -->
-	<bean id="tv" class="polymorphism.SamsungTV"
+	<!-- <bean id="tv" class="polymorphism.SamsungTV"
 		init-method="initMethod" destroy-method="destroyMethod"
-		lazy-init="true" scope="singleton"></bean>
+		lazy-init="true" scope="singleton"> -->
+
+		<!-- <constructor-arg index="0" ref="apple"></constructor-arg> <constructor-arg 
+			index="1" value="2700000"></constructor-arg> -->
+		<!-- <constructor-arg> 엘리먼트 매개변수의 개수만큼 추가 -->
+		<!-- index 속성을 이용해서 호출되는 생성자의 인자(argument) 순서 명확하게 지정가능 -->
+
+
+		<!-- <setter 인젝션 사용> ==> <property>엘리먼트 사용 -->
+		<!-- <property name="speaker" ref="apple"></property>
+		<property name="price" value="2700000"></property> -->
+		<!-- name속성값 : 호출하고자 하는 메소드 이름 -->
+		<!-- 다른 <bean> 객체를 인자로 넘기려면 ref 속성, 기본형 데이터를 넘기려면 value 속성 사용 -->
+
+		<!-- <p네임스페이스 의존성 주입> -->
+		<!-- <bean id="tv" class="polymorphism.SamsungTV" p:speaker-ref="sony" 
+			p:price="2700000"> -->
+
+
+
+	<!-- </bean> -->
 	<!-- 실행되는 TV를 LgTV로 변경하면, 클라이언트 소스를 수정하지 않고도 동작하는 TV 변경 가능 -->
 	<!-- <bean>객체를 위한 이름을 지정 : id / 정확한 패키지 경로와 클래스 이름 지정 : class(필수적) -->
 	<!-- name 속성은 id와 다르게 식별자 작성 규칙을 따르지 않는 문자열도 허용 , id 사용을 선호 -->
@@ -36,8 +69,8 @@
 
 
 
-	<!-- <import resource="context-datasource.xml"></import>       datasource 관련 설정 
-		<import resource="context-transaction.xml"></import>       transaction 관련 설정 -->
+	<!-- <import resource="context-datasource.xml"></import> datasource 관련 설정 
+		<import resource="context-transaction.xml"></import> transaction 관련 설정 -->
 	<!-- <import> 태그 : 스프링 기반의 애플리케이션은 단순한 <bean> 등록 외에도 트랜잭션 관리, 예외 처리, 다국어 
 		처리 등 복잡하고 다양한 설정이 필요 이런 모든 설정을 하나의 파일로 모두 처리할 수도 있지만 그렇게 하면 스프링 설정 파일이 너무 
 		길어지고 관리도 어려움 결국 기능별 여러 XML 파일로 나누어 설정하는 것이 더 효율적 -->
@@ -45,8 +78,44 @@
 		여러 스프링 설정 파일을 포함함으로써 한 파일에 작성하는 것과 같은 효과 -->
 
 
+	<!-- <bean id="sony" class="polymorphism.SonySpeaker"></bean> -->
+	<!-- 스프링 컨테이너는 기본적으로 bean 등록된 순서대로 객체 생성, 모든 객체는 기본 생성자 호출 원칙 -->
+	<!-- 생성자 인젝션으로 의존성 주입된 SonySpeaker가 먼저 객체 생성, 이를 매개변수로 받아들이는 생성자 호출하여 객체 
+		생성 -->
+	<!-- <bean id="apple" class="polymorphism.AppleSpeaker"></bean> -->
 
 
+	<!-- <bean id="CollectionBean" class="injection.CollectionBean">
+		<property name="addressList"> -->
+			<!-- <list> 
+			<value>서울시 강남구 역삼동</value> 
+			<value>서울시 성동구 행당동</value> 
+			</list> -->
 
+			<!-- <set value-type="java.lang.String"> 
+			<value>서울시 강남구 역삼동</value> 
+			<value>서울시 성동구 성수동</value> 
+			<value>서울시 성동구 성수동</value> 
+			set 컬렉션은 같은 데이터를 중복해서 저장하지 않는다. 
+				</set> -->
+
+			<!-- <map> 
+			<entry> 
+			<key> <value>고길동</value> </key> 
+			<value>서울시 강남구 역삼동</value> 
+			</entry> 
+			<entry> 
+			<key> <value>마이콜</value> </key> 
+			<value>서울시 강서구 화곡동</value> 
+			</entry> 
+			</map> -->
+
+			<!-- <props>
+				<prop key="고길동">서울시 강남구 역삼동</prop>
+				<prop key="마이콜">서울시 강서구 화곡동</prop>
+			</props>
+		</property>
+	</bean>
+ -->
 
 </beans>

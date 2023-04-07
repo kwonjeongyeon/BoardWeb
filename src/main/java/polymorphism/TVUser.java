@@ -53,35 +53,35 @@ public class TVUser {
 		// TV객체를 생성하여 리턴하는 BeanFactory 때문에 결과 얻을 수 있음
 		// TVUser는 객체가 필요하다는 것을 BeanFactory에 요청, BeanFactory가 클라이언트가 사용할 TV객체를 생성하여 넘겨줌
 
-		
+		                                                                                                                                                                                                                                                                                                                                                                                                                               
 		//------------------------------------------------------------------------------
 		// 1. Spring 컨테이너 구동
-//		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		// applicationContext.xml 로딩 --> GenericXmlApplicationContext 객체 생성 및 스프링 컨테이너
 		// 구동
 
 		// 2. Spring 컨테이너로부터 필요한 객체를 요청(Lookup)한다.
-//		TV tv = (TV) factory.getBean("tv");
-//		tv.powerOn();
-//		tv.volumeUp();
-//		tv.volumeDown();
-//		tv.powerOff();
+		TV tv = (TV) factory.getBean("tv");
+		tv.powerOn();
+		tv.volumeUp();
+		tv.volumeDown();
+		tv.powerOff();
 
 		// 3. Spring 컨테이너 종료
-//		factory.close();
+		factory.close();
 		
 		
 		//----------------------------------------------------------------------------------
 		//1. Spring IoC 컨테이너를 구동한다.
-		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+//		AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
 		
 		//2.Spring 컨테이너로부터 필요한 객체를 요청(Lookup)한다.
-		TV tv1 = (TV)factory.getBean("tv");
-		TV tv2 = (TV)factory.getBean("tv");
-		TV tv3 = (TV)factory.getBean("tv");
+//		TV tv1 = (TV)factory.getBean("tv");
+//		TV tv2 = (TV)factory.getBean("tv");
+//		TV tv3 = (TV)factory.getBean("tv");
 		
 		//3. Spring 컨테이너를 종료한다.
-		factory.close();
+//		factory.close();
 
 	}
 
