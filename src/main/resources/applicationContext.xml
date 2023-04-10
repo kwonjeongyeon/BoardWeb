@@ -3,8 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 	<!-- applicationContext : 컨테이너가 구동되는 시점에 <bean> 등록된 클래스들을 객체 생성하는 즉시 로딩 
 		방식으로 동작 -->
 		
@@ -15,6 +17,77 @@
 		<bean class="polymorphism.SonySpeaker"></bean> -->
 		
 		<context:component-scan base-package="com.myspring.biz"></context:component-scan>
+		
+<!-- 		<bean id="log" class="com.myspring.biz.common.LogAdvice"></bean>
+		<bean id="log" class="com.myspring.biz.common.Log4jAdvice"></bean>
+		<aop:config>
+		<aop:config> : 루트 엘리먼트, 여러번 사용가능
+		<aop:pointcut expression="execution(* com.myspring.biz..*Impl.*(..))" id="allPointcut"/>
+		<aop:pointcut expression="execution(* com.myspring.biz..*Impl.get*(..))" id="getPointcut"/>
+		                               리턴 타입 | 패키지 경로               | 클래스 명 | 메소드명 및 매개변수 
+		<aop:pointcut> : 포인트 컷을 지정하기 위해 사용, 유일한 아이디를 할당하여 aspect 설정할 때 포인트컷 참조 용도로 사용
+		<aop:aspect ref="log">
+		<aop:before method="printLog" pointcut-ref="getPointcut"/>
+		<aop:before method="printLogging" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+		</aop:config> -->
+		<!-- <aop:aspect>와 <aop:advisor> 같은 의미의 용어 : 포인트컷으로 지정한 메소드가 호출될 때, 어드바이스 메소드를 삽입하도록 하는 설정 -->
+				<!-- <aop:aspect> : 핵심 관심에 해당하는 포인트컷 메소드와 횡단 관심에 해당하는 어드바이스 메소드를 결합하기 위해 사용 -->
+			    <!-- <aop:advisor> : 어드바이스의 메소드 이름을 확인할 수 없을 때 사용 -->
+		<!-- 1. getPointcut 포인트컷 메소드 호출  2. log 어드바이스 객체  3. printLog() 메서드 실행  4. 동작시점 : before -->
+		
+		
+		<!-- Before 어드바이스 : 포인트컷으로 지정된 메소드 호출 시, 메소드가 실행되기 전에 처리할 내용들을 기술하기 위해 사용 -->
+<!--  		<bean id="before" class="com.myspring.biz.common.BeforeAdvice"></bean>
+		<aop:config>
+		<aop:pointcut expression="execution(* com.myspring.biz..*Impl.*(..))" id="allPointcut"/>
+		<aop:aspect ref="before">
+		<aop:before method="beforeLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+		</aop:config>  -->
+		
+		
+		
+	    <!-- AfterReturning 어드바이스 : 포인트컷 메소드가 정상적으로 실행되고 나서 생성된 데이터를 리턴하는 시점에 동작, 사후 처리 로직 추가할 때 사용 -->
+<!--  		<bean id="afterReturning" class="com.myspring.biz.common.AfterReturningAdvice"></bean>
+		<aop:config>
+		<aop:pointcut expression="execution(* com.myspring.biz..*Impl.get*(..))" id="getPointcut"/>
+		<aop:aspect ref="afterReturning">
+		<aop:after-returning method="afterLog" pointcut-ref="getPointcut" returning="returnobj"/>
+		비즈니스 메소드가 리턴한 결과값을 returnObj라는 바인드 변수에 바인드하라는 설정 
+		</aop:aspect>
+		</aop:config> -->
+		
+		
+		
+		<!-- AfterReturning 어드바이스 : 포인트컷 메소드가 실행되다가 예외가 발생하는 시점에 동작 -->
+		<!--  AfterReturning 어드바이스는 비즈니스 메소드에서 예외가 발생할 때 동작하므로 예외가 발생하지 않을 땐 동작 여부를 확인 할 수 없음,
+		따라서 BoardServiceImpl 클래스에 예외 발생 코드 추가 -->
+		
+		<!-- After 어드바이스 : 예외발생과 무관하게 무조건 실행, try-catch-finally 구문의 finally 블록 -->
+	<!-- 	<bean id="afterThrowing" class="com.myspring.biz.common.AfterThrowingAdvice"></bean>
+		<bean id="after" class="com.myspring.biz.common.AfterAdvice"></bean>
+		<aop:config>
+		<aop:pointcut expression="execution(* com.myspring.biz..*Impl.*(..))" id="allPointcut"/>
+		<aop:aspect ref="afterThrowing">
+		<aop:after-throwing method="exceptionLog" pointcut-ref="allPointcut" throwing="exceptObj" />
+		</aop:aspect>
+		
+		<aop:aspect ref="after">
+		<aop:after method="finallyLog" pointcut-ref="allPointcut"/>
+		</aop:aspect> 
+		</aop:config>   -->
+		
+		<!-- Around 어드바이스 : 하나의 어드바이스가 비즈니스 메소드 실행 전과 후에 모두 동작 -->
+		<!-- Around 어드바이스는 클라이언트의 메소드 호출을 가로채 사전 처리 로직, 사후처리 로직 수행 가능 -->
+		<bean id="around" class="com.myspring.biz.common.AroundAdvice"></bean>
+		<aop:config>
+		<aop:pointcut expression="execution(* com.myspring.biz..*Impl.*(..))" id="allPointcut"/>
+		
+		<aop:aspect ref="around">
+		<aop:around method="aroundLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+		</aop:config> 
 		
 		
 		<!-- <Setter 인젝션 설정 테스트 UserService 컴포넌트> -->
