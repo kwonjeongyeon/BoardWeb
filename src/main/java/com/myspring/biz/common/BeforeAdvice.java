@@ -1,16 +1,28 @@
 package com.myspring.biz.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Service;
 
-public class BeforeAdvice {
+@Service
+@Aspect
+public class BeforeAdvice { // BeforeAdviceëŠ” ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œê°€ ì‹¤í–‰ë˜ê¸° ì „ì— ê³µí†µìœ¼ë¡œ ì²˜ë¦¬í•  ì‘ì—…ì„ ìœ„í•´ ì‚¬ìš©
+
+	@Pointcut("execution(* com.myspring.biz..*Impl.*(..))")
+	public void allPointcut() {
+	}
+
+	@Before("allPointcut()")
 	public void beforeLog(JoinPoint jp) {
 		String method = jp.getSignature().getName();
-		// getSignature() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÏ¸é Å¬¶óÀÌ¾ğÆ®°¡ È£ÃâÇÑ ¸Ş¼Òµå ÀÌ¸§À» Ãâ·ÂÇÒ ¼ö ÀÖÀ½
+		// getSignature() ë©”ì†Œë“œë¥¼ ì´ìš©í•˜ë©´ í´ë¼ì´ì–¸íŠ¸ê°€ í˜¸ì¶œí•œ ë©”ì†Œë“œ ì´ë¦„ì„ ì¶œë ¥í•  ìˆ˜ ìˆìŒ
 		Object[] args = jp.getArgs();
-		// getArgs() ¸Ş¼Òµå¸¦ ÅëÇØ ÀÎÀÚ ¸ñ·ÏÀ» Object ¹è¿­·Î ¾ò¾î³¾ ¼ö ÀÖ¾î¼­ ¸Ş¼Òµå È£Ãâ¿¡ ¾î¶² °ªµéÀ» »ç¿ëÇß´ÂÁöµµ ¾Ë ¼ö ÀÖÀ½.
+		// getArgs() ë©”ì†Œë“œë¥¼ í†µí•´ ì¸ì ëª©ë¡ì„ Object ë°°ì—´ë¡œ ì–»ì–´ë‚¼ ìˆ˜ ìˆì–´ì„œ ë©”ì†Œë“œ í˜¸ì¶œì— ì–´ë–¤ ê°’ë“¤ì„ ì‚¬ìš©í–ˆëŠ”ì§€ë„ ì•Œ ìˆ˜ ìˆìŒ.
 
-//		System.out.println("[»çÀü Ã³¸®] ºñÁî´Ï½º ·ÎÁ÷ ¼öÇà Àü µ¿ÀÛ");
-		System.out.println("[»çÀü Ã³¸®] " + method + "() ¸Ş¼Òµå ARGS Á¤º¸ : " + args[0].toString());
+//		System.out.println("[ì‚¬ì „ ì²˜ë¦¬] ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ ìˆ˜í–‰ ì „ ë™ì‘");
+		System.out.println("[ì‚¬ì „ ì²˜ë¦¬] " + method + "() ë©”ì†Œë“œ ARGS ì •ë³´ : " + args[0].toString());
 	}
 
 }

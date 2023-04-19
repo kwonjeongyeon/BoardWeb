@@ -1,12 +1,32 @@
-package com.myspring.biz.common;
-
-import org.aspectj.lang.JoinPoint;
-
-public class LogAdvice {
-	public void printLog(JoinPoint jp) {
-		// JoinPoint °´Ã¼¸¦ »ç¿ëÇÏ·Á¸é ¾îµå¹ÙÀÌ½º ¸Ş¼Òµå ¸Å°³º¯¼ö·Î ¼±¾ğ¸¸ ÇÏ¸é µÈ´Ù.
-		// Å¬¶óÀÌ¾ğÆ®°¡ ºñÁî´Ï½º ¸Ş¼Òµå¸¦ È£ÃâÇÒ ¶§, ½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê°¡ JoinPoint °´Ã¼ »ı¼ºÇØ¼­ ¾îµå¹ÙÀÌ½º ¸Ş¼Òµå È£ÃâÇÒ ¶§ ³Ñ°ÜÁØ´Ù.
-		System.out.println("[°øÅë ·Î±×] ºñÁî´Ï½º ·ÎÁ÷ ¼öÇà Àü µ¿ÀÛ");
-	}
-
-}
+//package com.myspring.biz.common;
+//
+//import org.aspectj.lang.JoinPoint;
+//import org.aspectj.lang.annotation.Aspect;
+//import org.aspectj.lang.annotation.Before;
+//import org.aspectj.lang.annotation.Pointcut;
+//import org.springframework.stereotype.Service;
+//
+//@Service
+//@Aspect       //aspect = pointcut + advice
+//public class LogAdvice {
+////	public void printLog(JoinPoint jp) {
+////		// JoinPoint ê°ì²´ë¥¼ ì‚¬ìš©í•˜ë ¤ë©´ ì–´ë“œë°”ì´ìŠ¤ ë©”ì†Œë“œ ë§¤ê°œë³€ìˆ˜ë¡œ ì„ ì–¸ë§Œ í•˜ë©´ ëœë‹¤.
+////		// í´ë¼ì´ì–¸íŠ¸ê°€ ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•  ë•Œ, ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆê°€ JoinPoint ê°ì²´ ìƒì„±í•´ì„œ ì–´ë“œë°”ì´ìŠ¤ ë©”ì†Œë“œ í˜¸ì¶œí•  ë•Œ ë„˜ê²¨ì¤€ë‹¤.
+////		System.out.println("[ê³µí†µ ë¡œê·¸] ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ ìˆ˜í–‰ ì „ ë™ì‘");
+////	}
+//
+//	@Pointcut("execution(* com.myspring.biz..*Impl.*(..))")
+//	public void allPointcut() { //í¬ì¸íŠ¸ ì»·
+//	}
+//
+//	@Pointcut("execution(* com.myspring.biz..*Impl.get*(..))")
+//	public void getPointcut() {
+//	}
+//
+//	@Before("allPointcut()")
+//	public void printLog() { //ì–´ë“œë°”ì´ìŠ¤
+//		System.out.println("[ê³µí†µ ë¡œê·¸] ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ ìˆ˜í–‰ ì „ ë™ì‘");
+//		//allPointcut() ì°¸ì¡° ë©”ì†Œë“œë¡œ ì§€ì •í•œ ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œê°€ í˜¸ì¶œë  ë•Œ, ì–´ë“œë°”ì´ìŠ¤ ë©”ì†Œë“œì¸ printLog() ë©”ì†Œë“œê°€ Before í˜•íƒœë¡œ ë™ì‘í•˜ë„ë¡ ì„¤ì •
+//	}
+//
+//}

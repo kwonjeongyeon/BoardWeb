@@ -5,20 +5,20 @@ import org.aspectj.lang.JoinPoint;
 public class AfterThrowingAdvice {
 
 	public void exceptionLog(JoinPoint jp, Exception exceptObj) {
-		// ¹ÙÀÎµå º¯¼ö exceptObj´Â ¸ğµç ¿¹¿Ü °´Ã¼¸¦ ¹ÙÀÎµåÇÒ ¼ö ÀÖµµ·Ï ¿¹¿Ü Å¬·¡½ºÀÇ ÃÖ»óÀ§ Å¸ÀÔÀÎ ExceptionÀ¸·Î ¼±¾ğ
+		// ë°”ì¸ë“œ ë³€ìˆ˜ exceptObjëŠ” ëª¨ë“  ì˜ˆì™¸ ê°ì²´ë¥¼ ë°”ì¸ë“œí•  ìˆ˜ ìˆë„ë¡ ì˜ˆì™¸ í´ë˜ìŠ¤ì˜ ìµœìƒìœ„ íƒ€ì…ì¸ Exceptionìœ¼ë¡œ ì„ ì–¸
 
 		String method = jp.getSignature().getName();
 
-//		System.out.println("[¿¹¿Ü Ã³¸®] ºñÁî´Ï½º ·ÎÁ÷ ¼öÇà Áß ¿¹¿Ü ¹ß»ı");
-//		System.out.println("[¿¹¿Ü Ã³¸®] " + method + "() ¸Ş¼Òµå ¼öÇà Áß ¹ß»ıµÈ ¿¹¿Ü ¸Ş½ÃÁö : " + exceptObj.getMessage());
-		System.out.println(method + "() ¸Ş¼Òµå ¼öÇà Áß ¿¹¿Ü ¹ß»ı!");
+//		System.out.println("[ì˜ˆì™¸ ì²˜ë¦¬] ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ ìˆ˜í–‰ ì¤‘ ì˜ˆì™¸ ë°œìƒ");
+//		System.out.println("[ì˜ˆì™¸ ì²˜ë¦¬] " + method + "() ë©”ì†Œë“œ ìˆ˜í–‰ ì¤‘ ë°œìƒëœ ì˜ˆì™¸ ë©”ì‹œì§€ : " + exceptObj.getMessage());
+		System.out.println(method + "() ë©”ì†Œë“œ ìˆ˜í–‰ ì¤‘ ì˜ˆì™¸ ë°œìƒ!");
 
 		if (exceptObj instanceof IllegalArgumentException) {
-			System.out.println("ºÎÀûÇÕÇÑ °ªÀÌ ÀÔ·ÂµÇ¾ú½À´Ï´Ù.");
+			System.out.println("ë¶€ì í•©í•œ ê°’ì´ ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} else if (exceptObj instanceof NumberFormatException) {
-			System.out.println("¼ıÀÚ Çü½ÄÀÇ °ªÀÌ ¾Æ´Õ´Ï´Ù.");
+			System.out.println("ìˆ«ì í˜•ì‹ì˜ ê°’ì´ ì•„ë‹™ë‹ˆë‹¤.");
 		} else if (exceptObj instanceof Exception) {
-			System.out.println("¹®Á¦°¡ ¹ß»ıÇß½À´Ï´Ù.");
+			System.out.println("ë¬¸ì œê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 		}
 	}
 

@@ -1,26 +1,38 @@
 package com.myspring.biz.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Service;
 
 import com.myspring.biz.user.UserVO;
 
+@Service
+@Aspect
 public class AfterReturningAdvice {
-	// ºñÁî´Ï½º ¸Ş¼Òµå°¡ ¼öÇàµÇ°í ³ª¼­, °á°ú µ¥ÀÌÅÍ¸¦ ¸®ÅÏÇÒ ¶§ µ¿ÀÛÇÏ´Â ¾îµå¹ÙÀÌ½º
-	// ¾î¶² ¸Ş¼Òµå°¡ ¾î¶² °ªÀ» ¸®ÅÏÇß´ÂÁö¸¦ ¾Ë¾Æ¾ß »çÈÄ Ã³¸® ±â´ÉÀ» ´Ù¾çÇÏ°Ô ±¸ÇöÇÒ ¼ö ÀÖÀ½
+	// ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œê°€ ìˆ˜í–‰ë˜ê³  ë‚˜ì„œ, ê²°ê³¼ ë°ì´í„°ë¥¼ ë¦¬í„´í•  ë•Œ ë™ì‘í•˜ëŠ” ì–´ë“œë°”ì´ìŠ¤
+	// ì–´ë–¤ ë©”ì†Œë“œê°€ ì–´ë–¤ ê°’ì„ ë¦¬í„´í–ˆëŠ”ì§€ë¥¼ ì•Œì•„ì•¼ ì‚¬í›„ ì²˜ë¦¬ ê¸°ëŠ¥ì„ ë‹¤ì–‘í•˜ê²Œ êµ¬í˜„í•  ìˆ˜ ìˆìŒ
 
+	@Pointcut("execution(* com.myspring.biz..*Impl.get*(..))")
+	public void getPointcut() {
+
+	}
+
+	@AfterReturning(pointcut = "getPointcut()", returning = "returnobj")
 	public void afterLog(JoinPoint jp, Object returnobj) {
-		// Object : ¹ÙÀÎµå º¯¼ö , ºñÁî´Ï½º ¸Ş¼Òµå°¡ ¸®ÅÏÇÒ °á±£°ªÀ» ¹ÙÀÎµùÇÒ ¸ñÀûÀ¸·Î »ç¿ë, ¾î¶² °ªÀÌ ¸®ÅÏµÉÁö ¸ğ¸£±â ‹š¹®¿¡ Object Å¸ÀÔÀ¸·Î ¼±¾ğ
+		// Object : ë°”ì¸ë“œ ë³€ìˆ˜ , ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œê°€ ë¦¬í„´í•  ê²°ê´ê°’ì„ ë°”ì¸ë”©í•  ëª©ì ìœ¼ë¡œ ì‚¬ìš©, ì–´ë–¤ ê°’ì´ ë¦¬í„´ë ì§€ ëª¨ë¥´ê¸° Â‹Âšë¬¸ì— Object íƒ€ì…ìœ¼ë¡œ ì„ ì–¸
 		String method = jp.getSignature().getName();
 
 		if (returnobj instanceof UserVO) {
 			UserVO user = (UserVO) returnobj;
 			if (user.getRole().equals("Admin")) {
-				System.out.println(user.getName() + " ·Î±×ÀÎ(Admin)");
+				System.out.println(user.getName() + " ë¡œê·¸ì¸(Admin)");
 			}
 		}
 
-//		System.out.println("[»çÈÄ Ã³¸®] ºñÁî´Ï½º ·ÎÁ÷ ¼öÇà ÈÄ µ¿ÀÛ");
-		System.out.println("[»çÈÄ Ã³¸®] " + method + "() ¸Ş¼Òµå ¸®ÅÏ°ª : " + returnobj.toString());
+//		System.out.println("[ì‚¬í›„ ì²˜ë¦¬] ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ ìˆ˜í–‰ í›„ ë™ì‘");
+		System.out.println("[ì‚¬í›„ ì²˜ë¦¬] " + method + "() ë©”ì†Œë“œ ë¦¬í„´ê°’ : " + returnobj.toString());
 	}
 
 }

@@ -1,11 +1,11 @@
 package com.myspring.biz.common;
 
-import java.sql.Connection; //Æ¯Á¤ µ¥ÀÌÅÍº£ÀÌ½º¿ÍÀÇ ¿¬°á(¼¼¼Ç), SQL ¹®ÀÌ ½ÇÇàµÇ°í ¿¬°á ÄÁÅØ½ºÆ® ³»¿¡¼­ °á°ú°¡ ¹ÝÈ¯
-import java.sql.DriverManager; //JDBC µå¶óÀÌ¹ö ¼¼Æ®¸¦ °ü¸®ÇÏ±â À§ÇÑ ±âº» ¼­ºñ½º
-import java.sql.PreparedStatement; //¹Ì¸® ÄÄÆÄÀÏµÈ SQL ¹®À» ³ªÅ¸³»´Â °³Ã¼
-import java.sql.ResultSet; //µ¥ÀÌÅÍº£ÀÌ½º °á°ú ÁýÇÕÀ» ³ªÅ¸³»´Â µ¥ÀÌÅÍ Å×ÀÌºí, ÀÏ¹ÝÀûÀ¸·Î µ¥ÀÌÅÍº£ÀÌ½º¸¦ Äõ¸®ÇÏ´Â ¹®À» ½ÇÇàÇÏ¿© »ý¼º
+import java.sql.Connection; //íŠ¹ì • ë°ì´í„°ë² ì´ìŠ¤ì™€ì˜ ì—°ê²°(ì„¸ì…˜), SQL ë¬¸ì´ ì‹¤í–‰ë˜ê³  ì—°ê²° ì»¨í…ìŠ¤íŠ¸ ë‚´ì—ì„œ ê²°ê³¼ê°€ ë°˜í™˜
+import java.sql.DriverManager; //JDBC ë“œë¼ì´ë²„ ì„¸íŠ¸ë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ê¸°ë³¸ ì„œë¹„ìŠ¤
+import java.sql.PreparedStatement; //ë¯¸ë¦¬ ì»´íŒŒì¼ëœ SQL ë¬¸ì„ ë‚˜íƒ€ë‚´ëŠ” ê°œì²´
+import java.sql.ResultSet; //ë°ì´í„°ë² ì´ìŠ¤ ê²°ê³¼ ì§‘í•©ì„ ë‚˜íƒ€ë‚´ëŠ” ë°ì´í„° í…Œì´ë¸”, ì¼ë°˜ì ìœ¼ë¡œ ë°ì´í„°ë² ì´ìŠ¤ë¥¼ ì¿¼ë¦¬í•˜ëŠ” ë¬¸ì„ ì‹¤í–‰í•˜ì—¬ ìƒì„±
 
-//µ¥ÀÌÅÍº£ÀÌ½º ¿¬µ¿ Ã³¸® (DAO Å¬·¡½º¿¡¼­ °øÅëÀ¸·Î »ç¿ëÇÏ¿© connection È¹µæ°ú ÇØÁ¦ ÀÛ¾÷ Ã³¸®)
+//ë°ì´í„°ë² ì´ìŠ¤ ì—°ë™ ì²˜ë¦¬ (DAO í´ëž˜ìŠ¤ì—ì„œ ê³µí†µìœ¼ë¡œ ì‚¬ìš©í•˜ì—¬ connection íšë“ê³¼ í•´ì œ ìž‘ì—… ì²˜ë¦¬)
 public class JDBCUtil {
 	public static Connection getConnection() {
 

@@ -12,7 +12,7 @@ import com.myspring.biz.board.BoardVO;
 import com.myspring.biz.common.JDBCUtil;
 
 //DAO(Data Access Object)
-@Repository("boardDAO")
+//@Repository("boardDAO")
 public class BoardDAO {
 
 	// @Component는 스프링에서 관리되는 객체임을 표시하기 위해 사용하는 가장 기본적인 annotation (dependency injection 사용)

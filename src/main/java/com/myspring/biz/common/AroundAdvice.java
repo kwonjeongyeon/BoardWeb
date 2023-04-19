@@ -4,13 +4,13 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.util.StopWatch;
 
 public class AroundAdvice {
-	// AroundAdvice´Â ¹İµå½Ã ProceedingJoinPoint °´Ã¼¸¦ ¸Å°³º¯¼ö·Î ¹Ş¾Æ¾ß ÇÑ´Ù. (proceed() ¸Ş¼Òµå °¡Áö°í
-	// ÀÖÀ¸¸ç JoinPoint »ó¼Ó)
+	// AroundAdviceëŠ” ë°˜ë“œì‹œ ProceedingJoinPoint ê°ì²´ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì•„ì•¼ í•œë‹¤. (proceed() ë©”ì†Œë“œ ê°€ì§€ê³ 
+	// ìˆìœ¼ë©° JoinPoint ìƒì†)
 	public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {
-//		System.out.println("[BEFORE] : ºñÁî´Ï½º ¸Ş¼Òµå ¼öÇà Àü¿¡ Ã³¸®ÇÒ ³»¿ë ---");
+//		System.out.println("[BEFORE] : ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œ ìˆ˜í–‰ ì „ì— ì²˜ë¦¬í•  ë‚´ìš© ---");
 //		Object returnobj = pjp.proceed();
-//		//ProceedingJoinPoint °´Ã¼ÀÇ proceed() ¸Ş¼Òµå¸¦ ÅëÇØ ºñÁî´Ï½º ¸Ş¼Òµå È£Ãâ °¡´É
-//		System.out.println("[AFTER] : ºñÁî´Ï½º ¸Ş¼Òµå ¼öÇà ÈÄ¿¡ Ã³¸®ÇÒ ³»¿ë ---");
+//		//ProceedingJoinPoint ê°ì²´ì˜ proceed() ë©”ì†Œë“œë¥¼ í†µí•´ ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œ í˜¸ì¶œ ê°€ëŠ¥
+//		System.out.println("[AFTER] : ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œ ìˆ˜í–‰ í›„ì— ì²˜ë¦¬í•  ë‚´ìš© ---");
 //		return returnobj;
 
 		String method = pjp.getSignature().getName();
@@ -21,7 +21,7 @@ public class AroundAdvice {
 		Object obj = pjp.proceed();
 
 		stopWatch.stop();
-		System.out.println(method + "() ¸Ş¼Òµå ¼öÇà¿¡ °É¸° ½Ã°£ : " + stopWatch.getTotalTimeMillis() + "(ms)ÃÊ");
+		System.out.println(method + "() ë©”ì†Œë“œ ìˆ˜í–‰ì— ê±¸ë¦° ì‹œê°„ : " + stopWatch.getTotalTimeMillis() + "(ms)ì´ˆ");
 		return obj;
 	}
 
