@@ -19,7 +19,8 @@ public class AfterReturningAdvice {
 
 	}
 
-	@AfterReturning(pointcut = "getPointcut()", returning = "returnobj")
+	//@AfterReturning(pointcut = "getPointcut()", returning = "returnobj")
+	@AfterReturning(pointcut="PointcutCommon.getPointcut()", returning="returnobj")
 	public void afterLog(JoinPoint jp, Object returnobj) {
 		// Object : 바인드 변수 , 비즈니스 메소드가 리턴할 결괏값을 바인딩할 목적으로 사용, 어떤 값이 리턴될지 모르기 문에 Object 타입으로 선언
 		String method = jp.getSignature().getName();

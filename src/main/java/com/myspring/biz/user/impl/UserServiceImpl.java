@@ -11,11 +11,11 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
-	// UserServiceImpl Å¬·¡½ºÀÇ ºñÁî´Ï½º ¸Ş¼Òµå¸¦ ±¸ÇöÇÒ ¶§, ¸â¹öº¯¼ö·Î ¼±¾ğµÈ UserDAO ,°´Ã¼¸¦ ÀÌ¿ëÇÏ¿© DB ¿¬µ¿ Ã³¸®
+	// UserServiceImpl í´ë˜ìŠ¤ì˜ ë¹„ì¦ˆë‹ˆìŠ¤ ë©”ì†Œë“œë¥¼ êµ¬í˜„í•  ë•Œ, ë©¤ë²„ë³€ìˆ˜ë¡œ ì„ ì–¸ëœ UserDAO ,ê°ì²´ë¥¼ ì´ìš©í•˜ì—¬ DB ì—°ë™ ì²˜ë¦¬
 
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
-		// Setter ÀÎÁ§¼Ç Ã³¸®¸¦ À§ÇÑ Setter ¸Ş¼Òµå Ãß°¡
+		// Setter ì¸ì ì…˜ ì²˜ë¦¬ë¥¼ ìœ„í•œ Setter ë©”ì†Œë“œ ì¶”ê°€
 	}
 
 	public UserVO getUser(UserVO vo) {

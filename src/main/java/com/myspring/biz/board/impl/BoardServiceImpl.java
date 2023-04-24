@@ -10,12 +10,13 @@ import com.myspring.biz.board.BoardVO;
 //import com.myspring.biz.common.Log4jAdvice;
 //import com.myspring.biz.common.LogAdvice;
 
-//@Service("boardService")
+@Service("boardService")
 public class BoardServiceImpl implements BoardService {
 
-	//@Autowired
-	private BoardDAO boardDAO;
-	// µ¥ÀÌÅÍº£ÀÌ½º ¿¬µ¿ÀÌ Æ÷ÇÔµÈ ºñÁî´Ï½º ·ÎÁ÷ Ã³¸®¸¦ À§ÇØ BoardDAO Å¸ÀÔ °´Ã¼¸¦ ¸â¹öº¯¼ö·Î °¡Áö°í ÀÖÀ½.
+	@Autowired
+//	private BoardDAO boardDAO;       
+	private BoardDAOSpring boardDAO;
+	// ë°ì´í„°ë² ì´ìŠ¤ ì—°ë™ì´ í¬í•¨ëœ ë¹„ì¦ˆë‹ˆìŠ¤ ë¡œì§ ì²˜ë¦¬ë¥¼ ìœ„í•´ BoardDAO íƒ€ì… ê°ì²´ë¥¼ ë©¤ë²„ë³€ìˆ˜ë¡œ ê°€ì§€ê³  ìˆìŒ.
 	// private LogAdvice log;
 	// private Log4jAdvice log;
 
@@ -29,11 +30,12 @@ public class BoardServiceImpl implements BoardService {
 		// log.printLogging();
 
 //		if (vo.getSeq() == 0) {
-//			throw new IllegalArgumentException("0¹ø ±ÛÀº µî·ÏÇÒ ¼ö ¾ø½À´Ï´Ù.");
-//			//seq º¯¼ı°ªÀÌ 0ÀÌ¸é, IllegalArgumentExceptionÀ» °­Á¦·Î ¹ß»ı½ÃÄÑ ¿¹¿Ü Ã³¸® ¾îµå¹ÙÀÌ½ºÀÇ µ¿ÀÛ ¿©ºÎ È®ÀÎ 
-//			// ±Û µî·Ï ÀÛ¾÷Àº subquery¸¦ »ç¿ëÇÏ¿© seq ÄÃ·³°ªÀ» ÀÚµ¿À¸·Î Áõ°¡½ÃÅ°±â ¶§¹®¿¡ ¸Å°³º¯¼ö BoardVO °´Ã¼ÀÇ seq º¯¼ı°ªÀº Áß¿äÇÏÁö ¾ÊÀ½.
+//			throw new IllegalArgumentException("0ë²ˆ ê¸€ì€ ë“±ë¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+//			//seq ë³€ìˆ«ê°’ì´ 0ì´ë©´, IllegalArgumentExceptionì„ ê°•ì œë¡œ ë°œìƒì‹œì¼œ ì˜ˆì™¸ ì²˜ë¦¬ ì–´ë“œë°”ì´ìŠ¤ì˜ ë™ì‘ ì—¬ë¶€ í™•ì¸ 
+//			// ê¸€ ë“±ë¡ ì‘ì—…ì€ subqueryë¥¼ ì‚¬ìš©í•˜ì—¬ seq ì»¬ëŸ¼ê°’ì„ ìë™ìœ¼ë¡œ ì¦ê°€ì‹œí‚¤ê¸° ë•Œë¬¸ì— ë§¤ê°œë³€ìˆ˜ BoardVO ê°ì²´ì˜ seq ë³€ìˆ«ê°’ì€ ì¤‘ìš”í•˜ì§€ ì•ŠìŒ.
 //		}
 		boardDAO.insertBoard(vo);
+		//boardDAO.insertBoard(vo);
 	}
 
 	public void updateBoard(BoardVO vo) {

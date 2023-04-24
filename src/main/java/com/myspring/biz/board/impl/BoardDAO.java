@@ -15,28 +15,29 @@ import com.myspring.biz.common.JDBCUtil;
 //@Repository("boardDAO")
 public class BoardDAO {
 
-	// @Component´Â ½ºÇÁ¸µ¿¡¼­ °ü¸®µÇ´Â °´Ã¼ÀÓÀ» Ç¥½ÃÇÏ±â À§ÇØ »ç¿ëÇÏ´Â °¡Àå ±âº»ÀûÀÎ annotation (dependency injection »ç¿ë)
-	// @Repository : DB¿¡ Á¢±ÙÇÏ´Â ÄÚµå
-	// ½Ã½ºÅÛÀ» ±¸¼ºÇÏ´Â ¸ğµç Å©·¡½º¿¡ @component¸¦ ÇÒ´çÇÏ¸é ¾î¶² Å¬·¡½º°¡ ¾î¶² ¿ªÇÒÀ» ¼öÇàÇÏ´ÂÁö ÆÄ¾ÇÇÏ±â ¾î·Æ±â ¶§¹®¿¡
-	// ½ºÇÁ¸µ ÇÁ·¹ÀÓ¿öÅ©¿¡¼­´Â Å¬·¡½ºµéÀ» ºĞ·ùÇÏ±â À§ÇØ¼­ @component¸¦ »ó¼ÓÇÏ¿© ¾Æ·¡ÀÇ ¼¼ °³ÀÇ ¾î³ëÅ×ÀÌ¼ÇÀ» Ãß°¡·Î Á¦°øÇÑ´Ù.
-	// @Service(ºñÁî´Ï½º·ÎÁ÷Ã³¸®), @Repository(µ¥ÀÌÅÍº£ÀÌ½º ¿¬µ¿ Ã³¸®), @Controller(»ç¿ëÀÚ ¿äÃ» Á¦¾î)
+	// @ComponentëŠ” ìŠ¤í”„ë§ì—ì„œ ê´€ë¦¬ë˜ëŠ” ê°ì²´ì„ì„ í‘œì‹œí•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” ê°€ì¥ ê¸°ë³¸ì ì¸ annotation (dependency
+	// injection ì‚¬ìš©)
+	// @Repository : DBì— ì ‘ê·¼í•˜ëŠ” ì½”ë“œ
+	// ì‹œìŠ¤í…œì„ êµ¬ì„±í•˜ëŠ” ëª¨ë“  í¬ë˜ìŠ¤ì— @componentë¥¼ í• ë‹¹í•˜ë©´ ì–´ë–¤ í´ë˜ìŠ¤ê°€ ì–´ë–¤ ì—­í• ì„ ìˆ˜í–‰í•˜ëŠ”ì§€ íŒŒì•…í•˜ê¸° ì–´ë µê¸° ë•Œë¬¸ì—
+	// ìŠ¤í”„ë§ í”„ë ˆì„ì›Œí¬ì—ì„œëŠ” í´ë˜ìŠ¤ë“¤ì„ ë¶„ë¥˜í•˜ê¸° ìœ„í•´ì„œ @componentë¥¼ ìƒì†í•˜ì—¬ ì•„ë˜ì˜ ì„¸ ê°œì˜ ì–´ë…¸í…Œì´ì…˜ì„ ì¶”ê°€ë¡œ ì œê³µí•œë‹¤.
+	// @Service(ë¹„ì¦ˆë‹ˆìŠ¤ë¡œì§ì²˜ë¦¬), @Repository(ë°ì´í„°ë² ì´ìŠ¤ ì—°ë™ ì²˜ë¦¬), @Controller(ì‚¬ìš©ì ìš”ì²­ ì œì–´)
 
-	// JDBC °ü·Ã º¯¼ö
+	// JDBC ê´€ë ¨ ë³€ìˆ˜
 	private Connection conn = null;
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 
-	// SQL ¸í··¾îµé
+	// SQL ëª…ë ì–´ë“¤
 	private final String BOARD_INSERT = "insert into board(seq, title, writer, content) values((select nvl(max(seq), 0)+1 from board),?,?,?)";
 	private final String BOARD_UPDATE = "update board set title=?, content=? where seq=?";
 	private final String BOARD_DELETE = "delete board where seq=?";
 	private final String BOARD_GET = "select * from board where seq=?";
 	private final String BOARD_LIST = "select * from board order by seq desc";
 
-	// CRUD ±â´ÉÀÇ ¸Ş¼Òµå ±¸Çö (create, read, update, delete)
-	// ±Û µî·Ï
+	// CRUD ê¸°ëŠ¥ì˜ ë©”ì†Œë“œ êµ¬í˜„ (create, read, update, delete)
+	// ê¸€ ë“±ë¡
 	public void insertBoard(BoardVO vo) {
-		System.out.println("===> JDBC·Î insertBoard() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ insertBoard() ê¸°ëŠ¥ ì²˜ë¦¬");
 
 		try {
 			conn = JDBCUtil.getConnection();
@@ -53,9 +54,9 @@ public class BoardDAO {
 
 	}
 
-	// ±Û ¼öÁ¤
+	// ê¸€ ìˆ˜ì •
 	public void updateBoard(BoardVO vo) {
-		System.out.println("===> JDBC·Î updateBoard() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ updateBoard() ê¸°ëŠ¥ ì²˜ë¦¬");
 
 		try {
 			conn = JDBCUtil.getConnection();
@@ -71,9 +72,9 @@ public class BoardDAO {
 		}
 	}
 
-	// ±Û »èÁ¦
+	// ê¸€ ì‚­ì œ
 	public void deleteBoard(BoardVO vo) {
-		System.out.println("===> JDBC·Î deleteBoard() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ deleteBoard() ê¸°ëŠ¥ ì²˜ë¦¬");
 
 		try {
 			conn = JDBCUtil.getConnection();
@@ -87,9 +88,9 @@ public class BoardDAO {
 		}
 	}
 
-	// ±Û »ó¼¼ Á¶È¸
+	// ê¸€ ìƒì„¸ ì¡°íšŒ
 	public BoardVO getBoard(BoardVO vo) {
-		System.out.println("===> JDBC·Î getBoard() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ getBoard() ê¸°ëŠ¥ ì²˜ë¦¬");
 		BoardVO board = null;
 		try {
 			conn = JDBCUtil.getConnection();
@@ -117,9 +118,9 @@ public class BoardDAO {
 		return board;
 	}
 
-	// ±Û ¸ñ·Ï Á¶È¸
+	// ê¸€ ëª©ë¡ ì¡°íšŒ
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		System.out.println("===> JDBC·Î getBoardList() ±â´É Ã³¸®");
+		System.out.println("===> JDBCë¡œ getBoardList() ê¸°ëŠ¥ ì²˜ë¦¬");
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
 		try {
 			conn = JDBCUtil.getConnection();

@@ -1,9 +1,16 @@
 package com.myspring.biz.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Pointcut;
 
 public class AfterThrowingAdvice {
+	@Pointcut("execution(* com.myspring.biz..*Impl.*(..))")
+	public void allPointcut() {
+		
+	}
 
+	@AfterThrowing(pointcut="allPointcut()", throwing="exceptObj")
 	public void exceptionLog(JoinPoint jp, Exception exceptObj) {
 		// 바인드 변수 exceptObj는 모든 예외 객체를 바인드할 수 있도록 예외 클래스의 최상위 타입인 Exception으로 선언
 

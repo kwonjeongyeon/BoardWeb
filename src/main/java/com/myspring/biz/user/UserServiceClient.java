@@ -11,13 +11,13 @@ import com.myspring.biz.board.BoardVO;
 public class UserServiceClient {
 	public static void main(String[] args) {
 
-		// 1. Spring ÄÁÅ×ÀÌ³Ê ±¸µ¿
+		// 1. Spring ì»¨í…Œì´ë„ˆ êµ¬ë™
 		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 
-		// 2. Spring ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ UserServiceImpl °´Ã¼¸¦ Lookup
+		// 2. Spring ì»¨í…Œì´ë„ˆë¡œë¶€í„° UserServiceImpl ê°ì²´ë¥¼ Lookup
 		UserService userService = (UserService) container.getBean("userService");
 
-		// 3. ·Î±×ÀÎ ±â´É Å×½ºÆ®
+		// 3. ë¡œê·¸ì¸ ê¸°ëŠ¥ í…ŒìŠ¤íŠ¸
 
 		UserVO vo = new UserVO();
 		vo.setId("test");
@@ -25,12 +25,12 @@ public class UserServiceClient {
 
 		UserVO user = userService.getUser(vo);
 		if (user != null) {
-			System.out.println(user.getName() + "´Ô È¯¿µÇÕ´Ï´Ù.");
+			System.out.println(user.getName() + "ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤.");
 		} else {
-			System.out.println("·Î±×ÀÎ ½ÇÆĞ");
+			System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 		}
 
-		// 4. Spring ÄÁÅ×ÀÌ³Ê Á¾·á
+		// 4. Spring ì»¨í…Œì´ë„ˆ ì¢…ë£Œ
 		container.close();
 
 	}

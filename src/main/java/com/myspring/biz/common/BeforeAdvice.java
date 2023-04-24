@@ -13,8 +13,14 @@ public class BeforeAdvice { // BeforeAdvice는 비즈니스 메소드가 실행�
 	@Pointcut("execution(* com.myspring.biz..*Impl.*(..))")
 	public void allPointcut() {
 	}
+	
+//	@Pointcut("execution(* *(..))")
+//	public void allPointcut() {
+//	}
 
-	@Before("allPointcut()")
+	
+	//@Before("allPointcut()")
+	@Before("PointcutCommon.allPointcut()")
 	public void beforeLog(JoinPoint jp) {
 		String method = jp.getSignature().getName();
 		// getSignature() 메소드를 이용하면 클라이언트가 호출한 메소드 이름을 출력할 수 있음

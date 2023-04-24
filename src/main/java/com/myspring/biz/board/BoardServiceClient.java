@@ -5,31 +5,32 @@ import java.util.List;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-//½ºÇÁ¸µ ÄÁÅ×ÀÌ³Ê ±¸µ¿ ¹× BoardService ÄÄÆ÷³ÍÆ® »ç¿ë
+//ìŠ¤í”„ë§ ì»¨í…Œì´ë„ˆ êµ¬ë™ ë° BoardService ì»´í¬ë„ŒíŠ¸ ì‚¬ìš©
 public class BoardServiceClient {
 
 	public static void main(String[] args) {
-		// 1. Spring ÄÁÅ×ÀÌ³Ê ±¸µ¿
+		// 1. Spring ì»¨í…Œì´ë„ˆ êµ¬ë™
 		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 
-		// 2. Spring ÄÁÅ×ÀÌ³Ê·ÎºÎÅÍ BoardServiceImpl °´Ã¼¸¦ Lookup
+		// 2. Spring ì»¨í…Œì´ë„ˆë¡œë¶€í„° BoardServiceImpl ê°ì²´ë¥¼ Lookup
 		BoardService boardService = (BoardService) container.getBean("boardService");
 
-		// 3. ±Û µî·Ï ±â´É Å×½ºÆ®
+		// 3. ê¸€ ë“±ë¡ ê¸°ëŠ¥ í…ŒìŠ¤íŠ¸
 		BoardVO vo = new BoardVO();
-		vo.setTitle("ÀÓ½Ã Á¦¸ñ");
-		vo.setWriter("È«±æµ¿");
-		vo.setContent("ÀÓ½Ã ³»¿ë");
+		//vo.setSeq(100);
+		vo.setTitle("ì„ì‹œ ì œëª©");
+		vo.setWriter("í™ê¸¸ë™");
+		vo.setContent("ì„ì‹œ ë‚´ìš©");
 
 		boardService.insertBoard(vo);
 
-		// 4. ±Û ¸ñ·Ï °Ë»ö ±â´É Å×½ºÆ®
+		// 4. ê¸€ ëª©ë¡ ê²€ìƒ‰ ê¸°ëŠ¥ í…ŒìŠ¤íŠ¸
 		List<BoardVO> boardList = boardService.getBoardList(vo);
 		for (BoardVO board : boardList) {
 			System.out.println("===> " + board.toString());
 		}
 
-		// 5. Spring ÄÁÅ×ÀÌ³Ê Á¾·á
+		// 5. Spring ì»¨í…Œì´ë„ˆ ì¢…ë£Œ
 		container.close();
 	}
 
